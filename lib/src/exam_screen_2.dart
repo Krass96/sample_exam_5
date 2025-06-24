@@ -30,9 +30,14 @@ class _ExamScreen2State extends State<ExamScreen2> {
                     setState(() {
                       _temperature = temperature;
                     });
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Temperatur für $city abgerufen'),
-                    ));
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Stadt: $city'),
+                      ));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Temperatur für $city abgerufen'),
+                      ));
+                    }
                   },
                   child: Text('Temperatur abrufen'),
                 ),
