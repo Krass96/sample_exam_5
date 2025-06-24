@@ -48,7 +48,7 @@ class _ExamScreen1State extends State<ExamScreen1> {
                     hintText: 'Alter',
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  // TODO: validate age
+                  validator: _ageValidator,
                 ),
                 SizedBox(height: 16),
                 FilledButton(
@@ -78,7 +78,23 @@ class _ExamScreen1State extends State<ExamScreen1> {
   }
 
   String? _nameValidator(String? value) {
-    // TODO: Implement name validation
+    if (value == null || value.isEmpty) {
+      return 'Bitte geben Sie einen Namen ein';
+    }
+    if (value.length < 2) {
+      return 'Der Name muss mindestens 3 Zeichen lang sein';
+    }
+    return null;
+  }
+
+  String? _ageValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Bitte geben Sie Ihr Alter ein';
+    }
+    final age = int.tryParse(value);
+    if (age == null || age < 0 || age > 120) {
+      return 'Bitte geben Sie ein gültiges Alter ein';
+    }
     return null;
   }
 }
