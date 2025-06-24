@@ -97,4 +97,10 @@ class _ExamScreen1State extends State<ExamScreen1> {
     }
     return null;
   }
+
+  @override
+  void dispose() {
+    _formKey.currentState?.dispose();
+    super.dispose();
+  }
 }

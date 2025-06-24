@@ -25,7 +25,14 @@ class _ExamScreen2State extends State<ExamScreen2> {
               children: [
                 FilledButton(
                   onPressed: () async {
-                    // TODO: Implement get temperature from city
+                    String city = await _getUserCity();
+                    int temperature = await _getCurrentTemp(city);
+                    setState(() {
+                      _temperature = temperature;
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Temperatur für $city abgerufen'),
+                    ));
                   },
                   child: Text('Temperatur abrufen'),
                 ),
