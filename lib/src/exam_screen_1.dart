@@ -81,7 +81,7 @@ class _ExamScreen1State extends State<ExamScreen1> {
     if (value == null || value.isEmpty) {
       return 'Bitte geben Sie einen Namen ein';
     }
-    if (value.length < 2) {
+    if (value.length < 3) {
       return 'Der Name muss mindestens 3 Zeichen lang sein';
     }
     return null;
@@ -91,8 +91,11 @@ class _ExamScreen1State extends State<ExamScreen1> {
     if (value == null || value.isEmpty) {
       return 'Bitte geben Sie Ihr Alter ein';
     }
+    if (value.contains(RegExp(r'[^0-9]'))) {
+      return 'Bitte geben Sie nur Zahlen ein';
+    }
     final age = int.tryParse(value);
-    if (age == null || age < 0 || age > 120) {
+    if (age == null || age < 18 || age > 99) {
       return 'Bitte geben Sie ein gültiges Alter ein';
     }
     return null;
